@@ -135,6 +135,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+## add the artifacts dir so that it wont be considered. 
+.artifacts
 .env
 .envrc
 .venv

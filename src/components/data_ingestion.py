@@ -9,6 +9,9 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
+
 ## Here the @dataclass will be act as a decorator, it will be mainly used for processing 
 ## large volume of data. 
 ## storing the train/test and raw.csv files in the artifacts folder. 
@@ -63,7 +66,10 @@ if __name__=="__main__":
     train_data,test_data=obj.initiate_data_ingestion()
 
     data_transformation=DataTransformation()
-    data_transformation.initiate_data_transformation(train_data,test_data)
+    train_array,test_array,_= data_transformation.initiate_data_transformation(train_data,test_data)
+
+    modeltrainer=ModelTrainer()
+    print("R2 Score of the Model:", modeltrainer.initiate_model_trainer(train_array,test_array))
             
 
         
